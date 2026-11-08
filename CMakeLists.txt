@@ -9,5 +9,6 @@ add_executable(2110_project2
         src/main.cpp
         src/Facility.cpp
         src/FacilityHashTable.cpp
+        src/FacilityManager.cpp
         src/CampusGraph.cpp
 )

@@ -34,8 +34,10 @@ class FacilityHashTable{
     public:
         FacilityHashTable();
         ~FacilityHashTable();
+        bool isValidID(const string& id);
         bool insert(const Facility& facility);
         Facility* search(const string& id);
+
 
         void displayAll();
         void displayDiagnostics();

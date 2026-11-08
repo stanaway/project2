@@ -1,10 +1,13 @@
 #include "FacilityHashTable.h"
+#include "Facility.h"
 #include <iostream>
 #include <vector>
 #include <cctype>
 #include <string>
 
+
 using namespace std;
+
 
 FacilityHashTable::FacilityHashTable(){
     capacity = 15;
@@ -19,17 +22,18 @@ size_t FacilityHashTable::hashFunction(const string& id){
     string input = id;
     string numPart = "";
 
-    for(char c : input){ //extracts the numerical part char by char
-        if(isdigit(c)){//checks if the char is a digit
-            numPart += c; //if it is, adds it to numPart, which contains the numerical part of the ID
+    for(char c : input){//extracts the numerical part char by char
+        if(isdigit(c)){
+            numPart += c;
         }
     }
 
     int num = stoi(numPart); //converts the numerical part to integer
 
-    int bucketIndex = num % capacity; 
+    int bucketIndex = num % capacity;
 
     return bucketIndex;
+
 
 }
 
@@ -49,6 +53,10 @@ FacilityHashTable::~FacilityHashTable(){
 
 bool FacilityHashTable::insert(const Facility& facility){
     string id = facility.getFacilityID();
+
+    if(!isValidID(id)){
+        return false;
+    }
 
     for(char& c : id){
         c = toupper(static_cast<unsigned char> (c)); //avoids negative char values
@@ -106,10 +114,29 @@ Facility* FacilityHashTable::search(const string& id){
     return nullptr;
 }
 
+bool FacilityHashTable::isValidID(const string& id){
+    if(id.length() != 4){//returns false if id length is not 4
+        return false;
+    }
+    
+    if(toupper(static_cast<unsigned char>(id[0])) != 'F'){//returns false if the first char of the id is not 'F'
+        return false;
+    }
+
+    for(int i = 1; i < 4; i++){//loops through the numerical part of the id
+        if(!isdigit(static_cast<unsigned char>(id[i]))){//returns false if the 1st, 2nd, and 3rd char of the id is not numbers
+            return false;
+        }
+    }
+
+    return true;
+}
+
 void FacilityHashTable::displayAll(){
     for(size_t i = 0; i < facilities.size(); i++){
         facilities[i].display();
     }
+
 }
 
 void FacilityHashTable::displayDiagnostics(){

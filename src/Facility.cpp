@@ -1,5 +1,6 @@
 #include "Facility.h"
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ Facility::Facility(){
     category = "";
 }
 
-Facility::Facility(string& id, string& name, string& buildName, string& categ){
+Facility::Facility(const string& id, const string& name, const string& buildName, const string& categ){
     facilityID = id;
     facilityName = name;
     buildingName = buildName;
@@ -34,6 +35,8 @@ string Facility::getCategory() const{
     return category;
 }
 
+
+
 void Facility::setFacilityID(string& id){
     facilityID = id;
 }
@@ -43,5 +46,6 @@ void Facility::display(){
     cout << "Facility Name: " << facilityName << endl;
     cout << "Building Name: " << buildingName << endl;
     cout << "Category: " << category << endl;
+    cout << endl;
 
 }

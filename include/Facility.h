@@ -13,7 +13,7 @@ class Facility{
 
     public:
         Facility();
-        Facility(string& id, string& name, string& buildName, string& categ);
+        Facility(const string& id, const string& name, const string& buildName, const string& categ);
         
         string getFacilityID() const;
         string getFacilityName() const;

@@ -3,4 +3,11 @@ project(2110_project2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(2110_project2 src/main.cpp)
+include_directories(include)
+
+add_executable(2110_project2
+        src/main.cpp
+        src/Facility.cpp
+        src/FacilityHashTable.cpp
+        src/CampusGraph.cpp
+)

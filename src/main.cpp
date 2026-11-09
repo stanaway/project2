@@ -1,9 +1,8 @@
 #include "Facility.h"
 #include "FacilityManager.h"
 #include "FacilityHashTable.h"
-//#include "CampusGraph.h"
-//#include "DepartmentTree.h"
-
+#include "CampusGraph.h"
+#include "DepartmentTree.h"
 #include <iostream>
 #include <string>
 
@@ -31,13 +30,13 @@ int main(){
 
     FacilityHashTable facilityHTable;
     FacilityManager facilityManager;
-    //create DepartmentTree object
-    //create CampusGraph object
+    //DepartmentTree deptTree; //create DepartmentTree object
+    CampusGraph campusGraph;
 
     facilityManager.loadFacilities("data/facilities.txt", facilityHTable);
     //load the other data files
 
-    int choice;
+    int choice = 0;
 
     do{
         displayMenu();
@@ -65,19 +64,41 @@ int main(){
                 break;
             }
 
-            case 3:
+            case 3: //display campus graph
+                campusGraph.displayGraph();
+                break;
 
-            case 4:
+            case 4: //display cg counts and degrees
+                campusGraph.displayCountsAndDegrees();
+                break;
 
             case 5:
+            {
+                //bfs find reachanble buildings
+                string startBuilding;
+                cout << "Enter starting building name: ";
+                getline(cin, startBuilding);
+                if (startBuilding.empty()){
+                    cout << "[ERROR] Building name cannot be empty." << endl;
+                }
+                else
+                {
+                    campusGraph.findReachable(startBuilding);
+                }
+                break;
+            }
 
             case 6:
+                break;
 
             case 7:
+                break;
 
             case 8:
+                break;
 
             case 9:
+                break;
 
             case 10:
                 cout << "Exiting the program..." << endl;

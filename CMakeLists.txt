@@ -11,4 +11,5 @@ add_executable(2110_project2
         src/FacilityHashTable.cpp
         src/FacilityManager.cpp
         src/CampusGraph.cpp
+        src/DepartmentTree.cpp
 )

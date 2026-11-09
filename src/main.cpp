@@ -1,8 +1,8 @@
 #include "Facility.h"
 #include "FacilityManager.h"
 #include "FacilityHashTable.h"
-#include "CampusGraph.h"
-#include "DepartmentTree.h"
+//#include "CampusGraph.h"
+//#include "DepartmentTree.h"
 
 #include <iostream>
 #include <string>
@@ -10,6 +10,7 @@
 using namespace std;
 
 void displayMenu(){
+
 
     cout << "---------------------------- Smart Campus Navigation and Facility Analytics System ----------------------------" << endl;
     cout << "1. View all facilities" << endl;
@@ -45,15 +46,46 @@ int main(){
 
         switch(choice){
             case 1:
-            case 2:
+                facilityHTable.displayAll();
+                break;
+
+            case 2:{
+                string id;
+                cout << "Enter Facility ID: ";
+                cin >> id;
+
+                Facility* result = facilityHTable.search(id);
+
+                if(result != nullptr){
+                    result->display();
+                }
+                else{
+                    cout << "Facility ID not found!" << endl;
+                }
+                break;
+            }
+
             case 3:
+
             case 4:
+
             case 5:
+
             case 6:
+
             case 7:
+
             case 8:
+
             case 9:
+
             case 10:
+                cout << "Exiting the program..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+
         }
 
     } while(choice != 10);

@@ -24,6 +24,9 @@ class CampusGraph
     public:
         CampusGraph();  //constructor
 
+        void loadBuildings(const string& fileName, const string& displayFileName = "buildings.txt");    //file loading for buildings.txt
+        void loadConnections(const string& fileName, const string& displayFileName = "connections.txt");    //file loadding for connections.txt
+
         bool addBuilding(const string& buildingName);   //adds building
         bool addConnection(const string& buildingA, const string& buildingB);   //adds connection between 2 buildings
 

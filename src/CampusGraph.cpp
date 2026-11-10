@@ -1,5 +1,7 @@
 #include "CampusGraph.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <queue>
 #include <cctype>
 using namespace std;
@@ -36,6 +38,128 @@ static string toLower(const string& str)
 CampusGraph::CampusGraph()
 {
     connectionCount = 0;    //initializes connection count to 0
+}
+
+//loads buildings from buildings.txt
+void CampusGraph::loadBuildings(const string& fileName, const string& displayFileName)
+{
+    ifstream file(fileName);
+
+    if (!file.is_open())    //if no file
+    {
+        cout << "[ERROR] Could not open buildings file." << endl;
+        return;
+    }
+
+    string line;
+    int lineNumber = 0;
+    int accepted = 0;
+    int rejected = 0;
+
+    //read file
+    while (getline(file, line))
+    {
+        lineNumber++;
+        string cleanedLine = trimWhitespace(line);
+
+        if (cleanedLine.empty() || cleanedLine == "#")  //if line empty or comment
+        {
+            continue;
+        }
+
+        if (findBuildingIndex(cleanedLine) != -1)   //if already present in buildings
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Duplicate building name." << endl;
+            continue;
+        }
+
+        if (addBuilding(cleanedLine))
+        {
+            accepted++;
+        }
+        else//if invalid
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Invalid building name." << endl;
+        }
+    }
+
+    file.close();
+
+    cout << "\n------ BUILDING LOADING SUMMARY ------" << endl;
+    cout << "Accepted records: " << accepted << endl;
+    cout << "Rejected records: " << rejected << endl;
+}
+
+//loads connections from connections.txt
+void CampusGraph::loadConnections(const string& fileName, const string& displayFileName)
+{
+    ifstream file(fileName);
+
+    if (!file.is_open())    //if no file
+    {
+        cout << "[ERROR] Could not open connections file." << endl;
+        return;
+    }
+
+    string line;
+    int lineNumber = 0;
+    int accepted = 0;
+    int rejected = 0;
+
+    while (getline(file, line))
+    {
+        lineNumber++;
+        string cleanedLine = trimWhitespace(line);
+
+        if (cleanedLine.empty() || cleanedLine == "#")  //if line empty or comment
+        {
+            continue;
+        }
+
+        size_t separator = cleanedLine.find('|');
+        if (separator == string::npos)  //if error finding separator
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Missing '|' separator." << endl;
+            continue;
+        }
+
+        size_t secondSeparator = cleanedLine.find('|', separator + 1);
+        if (secondSeparator != string::npos) //if another separator in line found
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Extra fields found!" << endl;
+            continue;
+        }
+
+        string buildingA = trimWhitespace(cleanedLine.substr(0, separator));
+        string buildingB = trimWhitespace(cleanedLine.substr(separator + 1));
+
+        if (buildingA.empty() || buildingB.empty()) //compare strings
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Building name cannot be empty!" << endl;
+            continue;
+        }
+
+        if (addConnection(buildingA, buildingB))
+        {
+            accepted++;
+        }
+        else
+        {
+            rejected++;
+            cout << "[WARNING] " << displayFileName << ", line " << lineNumber << ": Failed to add connection." << endl;
+        }
+    }
+
+    file.close();
+
+    cout << "\n------ CONNECTION LOADING SUMMARY  ------" << endl;
+    cout << "Accepted Records: " << accepted << endl;
+    cout << "Rejected records: " << rejected << endl;
 }
 
 //returns index of building searched by case insensitive name, or -1 if not found

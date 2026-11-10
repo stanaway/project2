@@ -34,7 +34,7 @@ int main(){
     CampusGraph campusGraph;
 
     facilityManager.loadFacilities("data/facilities.txt", facilityHTable);
-    //load the other data files
+    deptTree.loadFromFile("data/departments.txt");
     campusGraph.loadBuildings("data/buildings.txt");
     campusGraph.loadConnections("data/connections.txt");
 

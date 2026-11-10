@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 4.3)
 project(2110_project2)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 20)
 

@@ -1,0 +1,64 @@
+PROJECT 2: SMART CAMPUS NAVIGATION AND FACILITY ANALYTICS SYSTEM
+
+The Smart Campus Navigation and Facility Analytics System is a a C++ program that loads campus data from text files and lets a user locate facilities, explore building connections, find routes, browse a department hierarchy, and view summary reports. 
+
+The system uses several  data-structures to organize and retrieve information. These include:
+- A custom hash table for facility lookup by ID.
+- An undirected graph for campus buildings and walkways, including Breadth-First Search (BFS).
+- A general tree for the academic department hierarchy.
+
+The program load information from the provided input files, validates the data, and allows users to access the system’s features through a menu.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+CUSTOM HASH TABLE AND COLLISION HANDLING
+
+Hash Table and Hash Function:
+
+The FacilityHashtable class uses a custom hash table. The hash function extracts the numeric portion of the facility ID and calculates the bucket index using the formula:
+
+      Bucket Index = numeric ID % capacity
+
+The capacity is initially 15.
+
+The IDs are normalized to uppercase using toupper() before insertion and searching. The program rejects duplicate IDs and keeps the first accepted record.
+
+Collision Handling:
+
+The hash table uses separate chaining to handle collisions. Each bucket points to a linked list of nodes. This allows multiple facilities to be in the same bucket.
+
+There is a collision counter, which increases every time a facility is inserted into a non-empty bucket. Facility records are stored separately in a vector to keep their original insertion order.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+CAMPUS GRAPH AND BFS REACHABILITY
+
+Graph Structure:
+- The CampusGraph class uses an undirected graph to represent campus buildings and map out their walkways.
+- Each node holds a building name string and a vector of neighbor names.
+- Used adjacency list for memory savings and to preserve neighbor order.
+- Connections are undirected and update both building neighbor lists simultaneously.
+- File loading functions reject edge cases.
+
+BFS Reachability:
+- Reachability search function findReachable is implemented using queue<int> for traversal, vector<bool> to track visited status, and vector<int> to track distances.
+- Starts at dist 0, pops nodes to display their information, then enqueues unvisited neighbors at dist + 1. Marks nodes visited when enqueued to prevent duplicate processing.
+- Unknown starting buildings print an error message and return to the menu.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+TREE AND TRAVERSAL DEPARTMENT
+
+Tree structure: Uses a general tree to organize the university's academic departments. 
+
+Each node contains:
+- The department's name.
+- A pointer to its parent department.
+- A vector containing pointers to its child departments.
+
+
+Tree Relationship: Parent-Child relationship. The department hierarchy is loaded from the departments.txt file. The University is the root of the tree. Colleges are its children, while academic departments are children of their corresponding colleges. Each child node stores a pointer to its parent, allowing the program to maintain the relationships between departments.
+
+Tree operations: The Department Tree supports loading, adding, searching, and displaying departments. The loadFromFile() function reads department names and their parents from departments.txt and automatically builds the tree while checking for invalid or duplicate records. The addDepartment() function allows users to add departments under an existing parent, while searchDepartment() finds departments by name and displays their information.
+
+The tree can also be displayed using displayHierarchy(), which uses recursion and indentation to show parent-child relationships. Finally, displayPreorder() visits each department before its children, following their insertion order. For example, the traversal starts with University, followed by College of Engineering, Computer Science, Electrical Engineering, College of Science, Mathematics, and Physics.

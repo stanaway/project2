@@ -35,6 +35,8 @@ int main(){
 
     facilityManager.loadFacilities("data/facilities.txt", facilityHTable);
     //load the other data files
+    campusGraph.loadBuildings("data/buildings.txt");
+    campusGraph.loadConnections("data/connections.txt");
 
     int choice = 0;
 

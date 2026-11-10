@@ -1,0 +1,36 @@
+MILESTONE 1 TESTING:
+
+
+10.1 File Loading:
+
+10.1.1 - Valid records, blank lines, comment lines, and records with too few or too many fields. PASS
+
+10.1.2 - A missing file.
+PASS
+
+10.1.3 - Duplicate building names that differ only by capitalization, and duplicate facility IDs that differ only by capitalization.
+PASS
+
+10.1.4 - Unknown building references (in connections and in facilities), duplicate and reversed connections, and unknown department parents.
+PASS
+
+10.2 Hash Table and Search:
+
+10.2.1 - Successful, lowercase, invalid-format, and not-found ID searches.
+PASS
+
+10.2.2 - At least one hash collision, using your own collision test data directory and the HASH-7 diagnostic, and a duplicate-key insertion attempt (confirming that it does not change the collision count).
+
+
+10.3 Graph and BFS:
+
+10.3.1 - BFS from a connected building and from an isolated building; BFS with an unknown start; a graph with multiple connected components.
+
+
+10.4 Tree, Reports, and Menu:
+
+10.4.1 - Empty tree (adding the root without a parent prompt), root-only tree, searches for the root, a non-root, and a missing department, adding with an unknown parent, adding a duplicate, and preorder traversal.
+
+10.4.2- Invalid menu input, text at numeric prompts, names containing spaces, blank names, and repeated operations after errors.
+
+

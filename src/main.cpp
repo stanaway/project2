@@ -30,7 +30,7 @@ int main(){
 
     FacilityHashTable facilityHTable;
     FacilityManager facilityManager;
-    //DepartmentTree deptTree; //create DepartmentTree object
+    DepartmentTree deptTree;
     CampusGraph campusGraph;
 
     facilityManager.loadFacilities("data/facilities.txt", facilityHTable);

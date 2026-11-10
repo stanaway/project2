@@ -1,0 +1,26 @@
+Zeynep Cansu:
+- Developed the Facility class and its constructors, getters, setters, and display function.
+- Designed and implemented the custom FacilityHashtable using separate chaining.
+- Implemented the custom hash function, facility ID validation, case normalization, insertion, searching, duplicate detection, and collision counting.
+- Developed the FacilityManager class to load and validate facility records from the input data file ‘facilities.txt’.
+- Implemented error reporting with filenames, line numbers, and rejection reasons.
+- Integrated the functionalities from Facility, FacilityHashtable, and FacilityManager classes into main.cpp.
+- Contributed to the design_document.txt and README.txt.
+- Commit the Facility, FacilityHashtable, and FacilityManager header and implementation files to GitHub.
+- Created the .gitignore file (used the C++ template GitHub offers).
+
+Emma Stanaway:
+- Implemented CampusGraph.h and CampusGraph.cpp
+- Implemented building and connection loading
+- Implemented breadth first search algorithm for displaying all reachable buildings
+- Implemented an adjacency list structure to represent campus layout and connection degrees
+
+Gabriela Magana - Department Tree: 
+- Implemented DepartmentTree.h and DepartmentTree.cpp.
+- Implemented department nodes with parent pointers and child collections.
+- Implemented loading department relationships from a text file.
+- Implemented department insertion and duplicate/parent validation.
+- Implemented case-insensitive department search.
+- Implemented hierarchy display and preorder traversal.
+- Implemented recursive cleanup and empty-tree checking.
+

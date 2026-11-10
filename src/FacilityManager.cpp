@@ -100,7 +100,7 @@ void FacilityManager::loadFacilities(const string& facilitiesFile, FacilityHashT
 
     }
 
-    cout << "\n ----- Accepted and Rejected Records -----" << endl;
+    cout << "\n ----- FACILITY LOADING SUMMARY -----" << endl;
     cout << "Accepted Records: " << accepted << endl;
     cout << "Rejected Records: " << rejected << endl;
 }

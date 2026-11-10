@@ -45,6 +45,8 @@ int main(){
         cout << "Enter your choice: ";
         cin >> choice;
 
+        cin.ignore(10000, '\n');    //to fix issues in switch case
+
         switch(choice){
             case 1:
                 facilityHTable.displayAll();

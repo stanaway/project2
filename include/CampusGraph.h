@@ -33,6 +33,9 @@ class CampusGraph
         void displayGraph() const;  //for displaying each building and neighbors
         void displayCountsAndDegrees() const;   //for displaing degrees and connections
         void findReachable(const string& startName) const;  //bfs
+
+        void findShortestPath(const string& startName, const string& destName) const;   //finds shortest bfs path between two buildings
+        void displayConnectivityReport() const; //displays graph connectivity report
 };
 
 #endif

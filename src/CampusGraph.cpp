@@ -326,3 +326,18 @@ void CampusGraph::findReachable(const string& startName) const
 
     cout << "Reachable: " << reachableCount << " of " << buildings.size() << " buildings." << endl; //print reachable info
 }
+
+void CampusGraph::findShortestPath(const string& startName, const string& destName) const
+{
+    //todo: get building indexes for startName and destName
+    //todo: set up bfs queue, visited vector, parent tracking vector
+    //todo: push start index to queue and mark as visited
+    //todo: bfs loop
+    //todo: trace parent tracking vector backwards
+    //todo: print output
+}
+
+void CampusGraph::displayConnectivityReport() const
+{
+
+}
